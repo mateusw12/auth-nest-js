@@ -9,20 +9,20 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { CreateItemDto } from './dto/item.dto';
-import { Auth, UserAccess } from 'src/auth/decorator';
+import { Auth, Public, UserAccess } from 'src/auth/decorator';
 import { ItemService } from './item.service';
 
 @Controller('items')
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}
 
-  // 🟢 GET sem autenticação
+  @Public()
   @Get()
   findAll() {
     return this.itemService.findAll();
   }
 
-  // 🟢 GET by ID sem autenticação
+  @Public()
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.itemService.findOne(id);

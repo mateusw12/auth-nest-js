@@ -6,13 +6,12 @@ import {
   Param,
   Put,
   Delete,
-  UseGuards,
   ParseIntPipe,
 } from '@nestjs/common';
 import { ItemService } from './item.service';
-import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateItemDto } from './dto/item.dto';
+import { Auth, UserAccess } from 'src/auth/decorator';
 
 @ApiTags('Items')
 @Controller('items')
@@ -31,27 +30,28 @@ export class ItemController {
     return this.itemService.findOne(id);
   }
 
-  // 🔒 POST com autenticação
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
   @Post()
-  create(@Body() dto: CreateItemDto) {
+  @Auth() // já aplica guard + Swagger
+  create(@Body() dto: CreateItemDto, @UserAccess() user: any) {
+    console.log('Usuário logado:', user);
     return this.itemService.create(dto);
   }
 
-  // 🔒 PUT com autenticação
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateItemDto) {
+  @Auth()
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: CreateItemDto,
+    @UserAccess() user: any,
+  ) {
+    console.log('Usuário logado:', user);
     return this.itemService.update(id, dto);
   }
 
-  // 🔒 DELETE com autenticação
-  @UseGuards(AuthGuard('jwt'))
-  @ApiBearerAuth()
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  @Auth()
+  remove(@Param('id', ParseIntPipe) id: number, @UserAccess() user: any) {
+    console.log('Usuário logado:', user);
     this.itemService.remove(id);
     return { message: `Item ${id} removido com sucesso.` };
   }

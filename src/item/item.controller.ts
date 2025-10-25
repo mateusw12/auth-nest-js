@@ -11,7 +11,9 @@ import {
 import { CreateItemDto } from './dto/item.dto';
 import { Auth, Public, UserAccess } from 'src/auth/decorator';
 import { ItemService } from './item.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags("Item")
 @Controller('items')
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}

@@ -9,11 +9,9 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { ItemService } from './item.service';
-import { ApiTags } from '@nestjs/swagger';
 import { CreateItemDto } from './dto/item.dto';
 import { Auth, UserAccess } from 'src/auth/decorator';
 
-@ApiTags('Items')
 @Controller('items')
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}

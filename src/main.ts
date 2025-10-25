@@ -7,7 +7,6 @@ async function bootstrap() {
   const PORT = process.env.PORT ?? 3000;
   const app = await NestFactory.create(AppModule);
 
-  // 🚀 Habilita CORS (importante para o Swagger e requisições externas)
   app.enableCors();
 
   if (process.env.NODE_ENV !== 'production') {

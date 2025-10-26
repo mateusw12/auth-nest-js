@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from './entities/user.entity';
-import { CreateUserDto } from './dto/user.dto';
+import { UserDto } from './dto/user.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -8,7 +8,7 @@ export class UserService {
   private users: User[] = [];
   private nextId = 1;
 
-  create(dto: CreateUserDto): User {
+  create(dto: UserDto): User {
     const hashedPassword = bcrypt.hashSync(dto.password, 10); // hash da senha
     const newUser = {
       id: this.nextId++,

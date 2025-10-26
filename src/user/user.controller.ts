@@ -1,6 +1,6 @@
 import { Controller, Post, Get, Delete, Param, Body } from '@nestjs/common';
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/user.dto';
+import { UserDto } from './dto/user.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/auth/decorator';
 
@@ -11,7 +11,7 @@ export class UserController {
 
   @Public()
   @Post()
-  create(@Body() dto: CreateUserDto) {
+  create(@Body() dto: UserDto) {
     return this.userService.create(dto);
   }
 

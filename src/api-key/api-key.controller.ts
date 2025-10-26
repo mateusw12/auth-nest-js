@@ -2,8 +2,8 @@ import { Controller, Get, Post, Body, UseGuards } from '@nestjs/common';
 import { ApiKeyService } from './api-key.service';
 import { ApiKeyGuard } from './guard/api-key.guard';
 import { ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/auth/decorator';
 import { ApiKeyDto } from './dto/api-key.dto';
+import { Public } from 'src/utils';
 
 @ApiTags('Api key')
 @Controller('api-key')

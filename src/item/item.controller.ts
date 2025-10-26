@@ -9,11 +9,12 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { CreateItemDto } from './dto/item.dto';
-import { Auth, Public, UserAccess } from 'src/auth/decorator';
+import { Auth, UserAccess } from 'src/auth/decorator';
 import { ItemService } from './item.service';
 import { ApiTags } from '@nestjs/swagger';
+import { Public } from 'src/utils';
 
-@ApiTags("Item")
+@ApiTags('Item')
 @Controller('items')
 export class ItemController {
   constructor(private readonly itemService: ItemService) {}

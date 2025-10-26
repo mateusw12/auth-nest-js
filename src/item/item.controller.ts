@@ -12,6 +12,7 @@ import { CreateItemDto } from './dto/item.dto';
 import { Auth, Public, UserAccess } from 'src/common/decorator';
 import { ItemService } from './item.service';
 import { ApiTags } from '@nestjs/swagger';
+import { CacheTTL } from 'src/common/decorator/cache-ttl.decorator';
 
 @ApiTags('Item')
 @Controller('items')
@@ -20,6 +21,7 @@ export class ItemController {
 
   @Public()
   @Get()
+  @CacheTTL()
   findAll() {
     return this.itemService.findAll();
   }

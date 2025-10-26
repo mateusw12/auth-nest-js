@@ -1,11 +1,13 @@
 import 'dotenv/config';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { CacheInterceptor } from './common/interceptors/cache.interceptor';
 
 async function bootstrap() {
   const PORT = process.env.PORT ?? 3000;
   const app = await NestFactory.create(AppModule);
+  app.useGlobalInterceptors(new CacheInterceptor(new Reflector()));
 
   app.enableCors();
 

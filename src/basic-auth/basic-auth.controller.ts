@@ -8,7 +8,7 @@ import {
 import { BasicAuthService } from './basic-auth.service';
 import { ApiBasicAuth } from '@nestjs/swagger';
 import { BasicAuthGuard } from './guard/basic-auth.guard';
-import { Public } from 'src/auth/decorator';
+import { Public } from 'src/common/decorator';
 
 @Controller('basic-auth')
 export class BasicAuthController {

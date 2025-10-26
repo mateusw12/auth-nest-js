@@ -9,7 +9,7 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { CreateItemDto } from './dto/item.dto';
-import { Auth, Public, UserAccess } from 'src/auth/decorator';
+import { Auth, Public, UserAccess } from 'src/common/decorator';
 import { ItemService } from './item.service';
 import { ApiTags } from '@nestjs/swagger';
 

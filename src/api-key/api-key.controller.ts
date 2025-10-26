@@ -3,7 +3,7 @@ import { ApiKeyService } from './api-key.service';
 import { ApiKeyGuard } from './guard/api-key.guard';
 import { ApiTags } from '@nestjs/swagger';
 import { ApiKeyDto } from './dto/api-key.dto';
-import { Auth, Public } from 'src/auth/decorator';
+import { Auth, Public } from 'src/common/decorator';
 
 @ApiTags('Api key')
 @Controller('api-key')

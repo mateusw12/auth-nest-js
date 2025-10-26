@@ -14,7 +14,9 @@ async function bootstrap() {
       .setTitle('Auth API')
       .setDescription('Documentação da API de autenticação e itens')
       .setVersion('1.0')
-      .addBearerAuth()
+      .addBearerAuth() // JWT Auth
+      .addBasicAuth() // 👈 adiciona Basic Auth
+      .addApiKey({ type: 'apiKey', name: 'x-api-key', in: 'header' }, 'api-key') // 👈 mantém também a API Key
       .build();
 
     const document = SwaggerModule.createDocument(app, config);

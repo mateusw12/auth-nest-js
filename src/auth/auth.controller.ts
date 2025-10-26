@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Public } from './decorator';
+import { LogoutDto } from './dto/logout.dto';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -12,7 +13,19 @@ export class AuthController {
   @Public()
   @Post('login')
   async login(@Body() dto: LoginDto) {
-    const token = await this.authService.login(dto);
-    return { access_token: token };
+    return this.authService.login(dto);
+  }
+
+  // 🔄 Refresh token
+  @Public()
+  @Post('refresh')
+  async refresh(@Body('refreshToken') refreshToken: string) {
+    return this.authService.refreshToken(refreshToken);
+  }
+
+  @Public()
+  @Post('logout')
+  async logout(@Body() body: LogoutDto) {
+    return this.authService.logout(body.userId);
   }
 }

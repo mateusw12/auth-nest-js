@@ -9,10 +9,9 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { CreateItemDto } from './dto/item.dto';
-import { Auth, UserAccess } from 'src/auth/decorator';
+import { Auth, Public, UserAccess } from 'src/auth/decorator';
 import { ItemService } from './item.service';
 import { ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/utils';
 
 @ApiTags('Item')
 @Controller('items')

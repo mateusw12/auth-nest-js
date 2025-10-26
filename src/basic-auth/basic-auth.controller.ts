@@ -6,9 +6,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { BasicAuthService } from './basic-auth.service';
-import { Public } from 'src/utils';
 import { ApiBasicAuth } from '@nestjs/swagger';
 import { BasicAuthGuard } from './guard/basic-auth.guard';
+import { Public } from 'src/auth/decorator';
 
 @Controller('basic-auth')
 export class BasicAuthController {

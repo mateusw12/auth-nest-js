@@ -2,7 +2,7 @@ import { Controller, Post, Get, Delete, Param, Body } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/user.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/utils';
+import { Public } from 'src/auth/decorator';
 
 @ApiTags("User")
 @Controller('users')
